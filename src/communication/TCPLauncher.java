@@ -44,8 +44,11 @@ public class TCPLauncher extends Thread {
 				session.start();
 				sessions.add(session);
 				System.out.println("Cliente "+s+ " Conectado");
+				session.sendMessage(""+s);
 				s++;
 			}
+			
+			sendMessageToSessions("Players Connected");
 
 			
 
@@ -58,4 +61,15 @@ public class TCPLauncher extends Thread {
 	public void setMain(MainView observer) {
 		this.observer = observer;
 	}
+
+	public ArrayList<Session> getSessions() {
+		return sessions;
+	}
+	
+	public void sendMessageToSessions(String msg) {
+		for(int i=0; i< sessions.size(); i++) {
+			sessions.get(i).sendMessage(msg);
+		}
+	}
+	
 }
