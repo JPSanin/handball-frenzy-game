@@ -75,4 +75,8 @@ public class Session extends Thread{
 	public void setID(int id) {
 		this.id=id;
 	}
+
+	public int getID() {
+		return id;
+	}
 }

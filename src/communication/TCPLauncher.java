@@ -47,10 +47,6 @@ public class TCPLauncher extends Thread {
 				session.sendMessage(""+s);
 				s++;
 			}
-			
-			sendMessageToSessions("Players Connected");
-
-			
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -7,6 +7,7 @@ import processing.core.PApplet;
 public class MainView extends PApplet {
 	private TCPLauncher launcher;
 	private ConnectionView cv;
+	private InstructionsView iv;
 	private int screen;
 
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class MainView extends PApplet {
 		launcher.start();
 		screen=0;
 		cv= new ConnectionView(this);
-		
+		iv= new InstructionsView(this);
 	}
 
 	public void draw() {
@@ -32,6 +33,13 @@ public class MainView extends PApplet {
 		switch(screen) {
 		case 0:
 			cv.drawScreen(launcher.getSessions().size());
+			if(launcher.getSessions().size()==2) {
+				launcher.sendMessageToSessions("Players Connected");
+				screen=1;
+			}
+			break;
+		case 1:
+			iv.drawScreen();
 			break;
 		}
 
