@@ -39,11 +39,13 @@ public class TCPLauncher extends Thread {
 				System.out.println("Esperando cliente en el 5000...");
 				Socket socket = server.accept();
 				Session session= new Session(socket);
+				session.start();
 				session.setObserver(observer);
 				session.setID(s);
-				session.start();
 				sessions.add(session);
 				System.out.println("Cliente "+s+ " Conectado");
+				
+				
 				session.sendMessage(""+s);
 				s++;
 			}

@@ -8,7 +8,10 @@ public class MainView extends PApplet {
 	private TCPLauncher launcher;
 	private ConnectionView cv;
 	private InstructionsView iv;
+	private GameView gv;
 	private int screen;
+	private boolean p1Ready;
+	private boolean p2Ready;
 
 	public static void main(String[] args) {
 		PApplet.main(MainView.class.getName());
@@ -26,6 +29,10 @@ public class MainView extends PApplet {
 		screen=0;
 		cv= new ConnectionView(this);
 		iv= new InstructionsView(this);
+		gv= new GameView(this);
+		p1Ready=false;
+		p2Ready=false;
+		
 	}
 
 	public void draw() {
@@ -40,13 +47,29 @@ public class MainView extends PApplet {
 			break;
 		case 1:
 			iv.drawScreen();
+			if(p1Ready && p2Ready) {
+				launcher.sendMessageToSessions("Players Ready");
+				screen=2;
+			}
+			break;
+		case 2:
+			gv.drawScreen();
 			break;
 		}
 
 	}
 	
 	public void messageRecieved(Session s, String msg) {
-		System.out.println("Message from session: "+s+" : "+msg  );
+		System.out.println("Message from session: "+s.getID()+" : "+msg );
+		if(s.getID()==1 && msg.equals("Ready")) {
+			p1Ready=true;
+		}
+		
+		if(s.getID()==2 && msg.equals("Ready")) {
+			p2Ready=true;
+		}
+		
+		
 	}
 
 }

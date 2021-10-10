@@ -30,10 +30,6 @@ public class Session extends Thread{
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader breader = new BufferedReader(isr);
 			
-			OutputStream os = socket.getOutputStream();
-			OutputStreamWriter osw= new OutputStreamWriter(os);
-			bw= new BufferedWriter(osw);
-
 			while (true) {
 
 				System.out.println("Esperando mensaje...");
@@ -53,7 +49,9 @@ public class Session extends Thread{
 				()->{
 					
 					try {
-						
+						OutputStream os = socket.getOutputStream();
+						OutputStreamWriter osw= new OutputStreamWriter(os);
+						bw= new BufferedWriter(osw);
 						bw.write(msg+"\n");
 						bw.flush();
 						
