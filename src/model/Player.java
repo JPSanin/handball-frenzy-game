@@ -10,8 +10,7 @@ public class Player {
 	private PVector velocity;
 	private PVector acceleration;
 	
-	private boolean posession;
-	private boolean jumping;
+	private boolean posession, jumping, steal, shoot;
 	private int player;
 	
 	
@@ -24,6 +23,8 @@ public class Player {
 		acceleration= new PVector(0,0);
 		posession=false;
 		jumping=false;
+		steal=false;
+		shoot=false;
 		this.player=player;
 		if(player==1) {
 			playerImg=app.loadImage("../img/p1.png");
@@ -79,6 +80,27 @@ public class Player {
 			velocity.y=-50;
 			acceleration.y= 3.5f;
 		}
+	}
+
+	
+
+	public boolean isSteal() {
+		return steal;
+	}
+
+
+	public void setSteal(boolean steal) {
+		this.steal = steal;
+	}
+
+
+	public boolean isShoot() {
+		return shoot;
+	}
+
+
+	public void setShoot(boolean shoot) {
+		this.shoot = shoot;
 	}
 
 

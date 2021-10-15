@@ -10,14 +10,30 @@ public class Controller {
 		 logic= Logic.getInstance(app);
 	}
 	
-	public void drawPlayers() {
-		logic.drawPlayers();
+	public void drawElements() {
+		logic.drawElements();
 	}
 
 	public void recieveMessage(int player, String msg) {
 		logic.recieveMessage(player,msg);
 		
 	}
+
+	public void startTime() {
+		logic.startTime();
+		
+	}
+
+	public String getTime() {
+		return logic.getTime();
+	}
+
+	public int getP1Goals() {
+		return logic.getP1Goals();
+	}
 	
+	public int getP2Goals() {
+		return logic.getP2Goals();
+	}
 	
 }

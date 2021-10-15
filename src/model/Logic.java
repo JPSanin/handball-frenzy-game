@@ -6,7 +6,7 @@ public class Logic {
 	
 	private Player p1;
 	private Player p2;
-	
+	private Ball b;
 	private Scoreboard sb;
 	
 	private PApplet app;
@@ -16,6 +16,8 @@ public class Logic {
 		this.app=app;
 		p1= new Player(180,400,1,app);
 		p2= new Player(710,400,2,app);
+		b= new Ball(app);
+		sb= new Scoreboard(app);
 	}
 
 
@@ -27,9 +29,10 @@ public class Logic {
 	}
 	
 	
-	public void drawPlayers() {
+	public void drawElements() {
 		p1.draw();
 		p2.draw();
+		b.draw();
 	}
 
 	public void recieveMessage(int player, String msg) {
@@ -48,6 +51,24 @@ public class Logic {
 	}
 
 
+	public void startTime() {
+		sb.start();
+	}
+
+
+	public String getTime() {
+		return sb.getTime();
+		
+	}
+
+
+	public int getP1Goals() {
+		return sb.getP1goals();
+	}
+
+	public int getP2Goals() {
+		return sb.getP2goals();
+	}
 	
 	
 	
