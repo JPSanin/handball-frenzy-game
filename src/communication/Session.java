@@ -34,7 +34,7 @@ public class Session extends Thread{
 
 				System.out.println("Esperando mensaje...");
 				String msg = breader.readLine();
-				System.out.println(msg);
+				//System.out.println(msg);
 				observer.messageRecieved(this, msg);
 
 			}

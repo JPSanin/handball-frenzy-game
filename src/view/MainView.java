@@ -56,6 +56,8 @@ public class MainView extends PApplet {
 			gv.drawScreen();
 			break;
 		}
+		
+		text(mouseX+","+mouseY, mouseX,mouseY);
 
 	}
 	
@@ -69,6 +71,7 @@ public class MainView extends PApplet {
 			p2Ready=true;
 		}
 		
+		gv.recieveMessage(s.getID(),msg);
 		
 	}
 
