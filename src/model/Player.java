@@ -75,14 +75,21 @@ public class Player {
 			acceleration.x=-0.5f;
 		}
 		
-		if(movement.equals("jump")) {
+		if(movement.equals("jump") && !jumping) {
 			jumping=true;
-			velocity.y=-50;
-			acceleration.y= 3.5f;
+			velocity.y=-30;
+			acceleration.y= 1.2f;
 		}
 	}
 
 	
+	
+	
+
+	public PVector getPosition() {
+		return position;
+	}
+
 
 	public boolean isSteal() {
 		return steal;
@@ -132,6 +139,14 @@ public class Player {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
+
+
+	public void setPosition(PVector position) {
+		this.position = position;
+	}
+
+
+	
 	
 	
 }

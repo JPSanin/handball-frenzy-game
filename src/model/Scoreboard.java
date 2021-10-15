@@ -40,6 +40,7 @@ public class Scoreboard extends Thread {
 
 		} while (delay != 0);
 		timesUp=true;
+		timeDisplay = "0:00";
 		//System.out.println("Time's Up!");
 	}
 	
@@ -55,6 +56,14 @@ public class Scoreboard extends Thread {
 
 	public int getP2goals() {
 		return p2goals;
+	}
+
+	public void setP1goals(int p1goals) {
+		this.p1goals = p1goals;
+	}
+
+	public void setP2goals(int p2goals) {
+		this.p2goals = p2goals;
 	}
 	
 	

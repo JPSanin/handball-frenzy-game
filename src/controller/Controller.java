@@ -35,5 +35,13 @@ public class Controller {
 	public int getP2Goals() {
 		return logic.getP2Goals();
 	}
+
+	public boolean goal() {
+		return logic.goal();
+	}
+	
+	public String goalMsg() {
+		return logic.goalMsg();
+	}
 	
 }

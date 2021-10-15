@@ -40,4 +40,12 @@ public class GameView {
 	public void startTime() {
 		controller.startTime();
 	}
+
+	public boolean goal() {
+		return controller.goal();
+	}
+	
+	public String goalMsg() {
+		return controller.goalMsg();
+	}
 }

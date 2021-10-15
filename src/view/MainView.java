@@ -26,7 +26,7 @@ public class MainView extends PApplet {
 		launcher= TCPLauncher.getInstance();
 		launcher.setMain(this);
 		launcher.start();
-		screen=2;
+		screen=0;
 		cv= new ConnectionView(this);
 		iv= new InstructionsView(this);
 		gv= new GameView(this);
@@ -55,9 +55,12 @@ public class MainView extends PApplet {
 			break;
 		case 2:
 			gv.drawScreen();
+			if(gv.goal()) {
+				launcher.sendMessageToSessions(gv.goalMsg());
+			}
 			break;
 		}
-		textSize(12);
+		textSize(20);
 		text(mouseX+","+mouseY, mouseX,mouseY);
 
 	}
