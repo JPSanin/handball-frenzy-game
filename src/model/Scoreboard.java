@@ -1,6 +1,6 @@
 package model;
 
-import processing.core.PApplet;
+
 
 public class Scoreboard extends Thread {
 
@@ -11,16 +11,14 @@ public class Scoreboard extends Thread {
 
 	private boolean timesUp;
 
-	private PApplet app;
 
-	public Scoreboard(PApplet app) {
+	public Scoreboard() {
 		p1goals = 0;
 		p2goals = 0;
 		timeStart = 120;
 		timesUp = false;
 		timeDisplay = "2:00";
 		delay=timeStart * 1000;
-		this.app = app;
 	}
 
 	public void run() {
@@ -65,6 +63,16 @@ public class Scoreboard extends Thread {
 	public void setP2goals(int p2goals) {
 		this.p2goals = p2goals;
 	}
+
+	public boolean isTimesUp() {
+		return timesUp;
+	}
+
+	public void setTimesUp(boolean timesUp) {
+		this.timesUp = timesUp;
+	}
+	
+	
 	
 	
 

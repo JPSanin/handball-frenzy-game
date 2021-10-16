@@ -7,8 +7,8 @@ import processing.core.PVector;
 public class Ball {
 
 	private static final int NONE = 0;
-	private static final int PLAYER1 = 1;
-	private static final int PLAYER2 = 2;
+	/*private static final int PLAYER1 = 1;
+	private static final int PLAYER2 = 2;*/
 
 	private PVector position;
 	private PVector velocity;

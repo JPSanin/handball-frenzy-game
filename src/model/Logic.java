@@ -19,7 +19,7 @@ public class Logic {
 		p1 = new Player(180, 400, 1, app);
 		p2 = new Player(710, 400, 2, app);
 		b = new Ball(app);
-		sb = new Scoreboard(app);
+		sb = new Scoreboard();
 	}
 
 	public static Logic getInstance(PApplet app) {
@@ -67,23 +67,23 @@ public class Logic {
 	public void grabBall() {
 		// W 110 H120
 		// Check grab
-		if (PApplet.dist(p1.getPosition().x+55,p1.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p1.isPosession()  && !p2.isPosession()) {
+		if (PApplet.dist(p1.getPosition().x+55,p1.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p2.isPosession()) {
 			b.changePosession(p1.getPosition().x+55, p1.getPosition().y+30,1);
-			p1.isPosession();
+			p1.setPosession(true);
 			return;
 		}else {
 			b.changePosession(b.getPosition().x, b.getPosition().y,0);
 		}
 		
-		if (PApplet.dist(p2.getPosition().x+55,p2.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p2.isPosession()  && !p1.isPosession()) {
+		if (PApplet.dist(p2.getPosition().x+55,p2.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p1.isPosession()  && !p1.isPosession()) {
 			b.changePosession(p2.getPosition().x, p2.getPosition().y+40,2);
-			p2.isPosession();
+			p2.setPosession(true);
 		}else {
 			b.changePosession(b.getPosition().x, b.getPosition().y,0);
 		}
-		System.out.println("possesion: "+b.getPosession());
+		/*System.out.println("possesion: "+b.getPosession());
 		System.out.println("x: "+b.getPosition().x);
-		System.out.println("y: "+b.getPosition().y);
+		System.out.println("y: "+b.getPosition().y);*/
 	}
 
 	public String goalMsg() {
@@ -92,11 +92,29 @@ public class Logic {
 
 	public void recieveMessage(int player, String msg) {
 		if (player == 1) {
-			p1.move(msg);
+			if(msg.equals("steal")) {
+				if (PApplet.dist(p1.getPosition().x+55,p1.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && p2.isPosession()) {
+					b.changePosession(p1.getPosition().x+55, p1.getPosition().y+30,1);
+					p1.setPosession(true);
+					p2.setPosession(false);
+				}
+			}else {
+				p1.move(msg);
+			}
+			
 		}
 
 		if (player == 2) {
-			p2.move(msg);
+			if(msg.equals("steal")) {
+				if (PApplet.dist(p1.getPosition().x+55,p1.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && p1.isPosession()) {
+					b.changePosession(p1.getPosition().x+55, p1.getPosition().y+30,1);
+					p2.setPosession(true);
+					p1.setPosession(false);
+				}
+			}else {
+				p2.move(msg);
+			}
+			
 		}
 
 	}
