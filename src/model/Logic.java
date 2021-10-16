@@ -110,7 +110,7 @@ public class Logic {
 
 		if (player == 2) {
 			if(msg.equals("steal")) {
-				if (PApplet.dist(p2.getPosition().x+55,p2.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p1.isPosession()  && !p1.isPosession()) {
+				if (PApplet.dist(p2.getPosition().x+55,p2.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && p1.isPosession()) {
 					b.changePosession(p2.getPosition().x, p2.getPosition().y+40,2);
 					p2.setPosession(true);
 					p1.setPosession(false);
