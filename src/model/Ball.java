@@ -54,8 +54,10 @@ public class Ball {
 		app.image(ballImg, position.x, position.y);
 	}
 
-	public void shoot(int x, int y, int player) {
-
+	public void shoot(float x, float y) {
+		velocity.x=x;
+		velocity.y=y;
+		posession=NONE;
 	}
 
 	public void changePosession(float x, float y, int player) {

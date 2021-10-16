@@ -98,6 +98,10 @@ public class Logic {
 					p1.setPosession(true);
 					p2.setPosession(false);
 				}
+			}else if(msg.equals("shoot")&& p1.isPosession()) {
+				b.changePosession(b.getPosition().x+56, b.getPosition().y+30,0);
+				p1.setPosession(false);
+				b.shoot(7.5f, 0);
 			}else {
 				p1.move(msg);
 			}
@@ -106,11 +110,15 @@ public class Logic {
 
 		if (player == 2) {
 			if(msg.equals("steal")) {
-				if (PApplet.dist(p1.getPosition().x+55,p1.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && p1.isPosession()) {
-					b.changePosession(p1.getPosition().x+55, p1.getPosition().y+30,1);
+				if (PApplet.dist(p2.getPosition().x+55,p2.getPosition().y+60,b.getPosition().x+36,b.getPosition().y+36)<55 && !p1.isPosession()  && !p1.isPosession()) {
+					b.changePosession(p2.getPosition().x, p2.getPosition().y+40,2);
 					p2.setPosession(true);
 					p1.setPosession(false);
 				}
+			}else if(msg.equals("shoot")) {
+				b.changePosession(b.getPosition().x-56, b.getPosition().y+30,0);
+				p2.setPosession(false);
+				b.shoot(-7.5f, 0);
 			}else {
 				p2.move(msg);
 			}
