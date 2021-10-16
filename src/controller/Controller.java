@@ -43,5 +43,13 @@ public class Controller {
 	public String goalMsg() {
 		return logic.goalMsg();
 	}
+
+	public boolean isGameOver() {
+		return logic.isGameOver();
+	}
+
+	public int getWinner() {
+		return logic.getWinner();
+	}
 	
 }

@@ -12,6 +12,7 @@ public class MainView extends PApplet {
 	private int screen;
 	private boolean p1Ready;
 	private boolean p2Ready;
+	private boolean finished;
 
 	public static void main(String[] args) {
 		PApplet.main(MainView.class.getName());
@@ -32,6 +33,7 @@ public class MainView extends PApplet {
 		gv= new GameView(this);
 		p1Ready=false;
 		p2Ready=false;
+		finished=false;
 		
 	}
 
@@ -58,6 +60,12 @@ public class MainView extends PApplet {
 			if(gv.goal()) {
 				launcher.sendMessageToSessions(gv.goalMsg());
 			}
+			
+			if(gv.isGameOver() && !finished) {
+				launcher.sendMessageToSessions("game over");
+				finished=true;
+			}
+			
 			break;
 		}
 		textSize(20);

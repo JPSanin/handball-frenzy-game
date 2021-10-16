@@ -10,6 +10,8 @@ public class Logic {
 	private Ball b;
 	private Scoreboard sb;
 	private String goalMsg;
+	private boolean tie;
+	private boolean gameOver;
 
 	private PApplet app;
 	private static Logic onlyInstance;
@@ -20,6 +22,7 @@ public class Logic {
 		p2 = new Player(710, 400, 2, app);
 		b = new Ball(app);
 		sb = new Scoreboard();
+		tie=false;
 	}
 
 	public static Logic getInstance(PApplet app) {
@@ -34,11 +37,29 @@ public class Logic {
 		p2.draw();
 		b.draw();
 		grabBall();
+		resetOutofBounds();
+		
+		if(sb.isTimesUp() && sb.getWinner()==0) {
+			tie=true;
+		}
+		
+		if(sb.isTimesUp() && sb.getWinner()!=0) {
+			gameOver=true;
+		}
+		
 
+	}
+	
+	public void resetOutofBounds() {
+		if ((b.getPosition().x > 990) || (b.getPosition().x < 10)) {
+			p1.setPosition(new PVector(180, 400));
+			p2.setPosition(new PVector(710, 400));
+		}
 	}
 
 	public boolean goal() {
 		boolean goal = false;
+	
 		if (b.getPosition().x <= 114 && b.getPosition().y >= 310) {
 			goal = true;
 			goalMsg = "2,goal";
@@ -49,6 +70,9 @@ public class Logic {
 			p1.setPosition(new PVector(180, 400));
 			p2.setPosition(new PVector(710, 400));
 			sb.setP2goals(getP2Goals() + 1);
+			if(tie) {
+				 sb.setWinner(2);
+			}
 		}
 
 		if (b.getPosition().x >= 815 && b.getPosition().y >= 310) {
@@ -57,7 +81,13 @@ public class Logic {
 			// Reset
 			b.setPosition(new PVector(464, 15));
 			b.setVelocity(new PVector(0, 0));
+			
+			p1.setPosition(new PVector(180, 400));
+			p2.setPosition(new PVector(710, 400));
 			sb.setP1goals(getP1Goals() + 1);
+			if(tie) {
+				 sb.setWinner(1);
+			}
 		}
 
 		return goal;
@@ -146,6 +176,14 @@ public class Logic {
 
 	public int getP2Goals() {
 		return sb.getP2goals();
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+	
+	public int getWinner() {
+		return sb.getWinner();
 	}
 
 }
